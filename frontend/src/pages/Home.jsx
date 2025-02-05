@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import api from "../api";
-import Note from "../components/Note"
-import "../styles/Home.css"
+import Note from "../components/Note";
+import "../styles/Home.css";
 
 function Home() {
     const [notes, setNotes] = useState([]);
@@ -10,6 +10,25 @@ function Home() {
 
     useEffect(() => {
         getNotes();
+    }, []);
+
+    useEffect(() => {
+        // Load chatbot script after login
+        const script1 = document.createElement("script");
+        script1.src = "https://cdn.botpress.cloud/webchat/v2.2/inject.js";
+        script1.async = true;
+
+        const script2 = document.createElement("script");
+        script2.src = "https://files.bpcontent.cloud/2025/02/05/15/20250205150627-2T5C2A1N.js";
+        script2.async = true;
+
+        document.body.appendChild(script1);
+        document.body.appendChild(script2);
+
+        return () => {
+            document.body.removeChild(script1);
+            document.body.removeChild(script2);
+        };
     }, []);
 
     const getNotes = () => {
@@ -47,7 +66,7 @@ function Home() {
     };
 
     return (
-        <div>
+        <div className="home-container">
             <div>
                 <h2>Notes</h2>
                 {notes.map((note) => (
@@ -55,7 +74,7 @@ function Home() {
                 ))}
             </div>
             <h2>Create a Note</h2>
-            <form onSubmit={createNote}>
+            <form onSubmit={createNote} className="note-form">
                 <label htmlFor="title">Title:</label>
                 <br />
                 <input
@@ -76,8 +95,11 @@ function Home() {
                     onChange={(e) => setContent(e.target.value)}
                 ></textarea>
                 <br />
-                <input type="submit" value="Submit"></input>
+                <input type="submit" value="Submit" />
             </form>
+
+            {/* Chatbot Widget */}
+            <div id="chatbot" className="chatbot-container"></div>
         </div>
     );
 }
