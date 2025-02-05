@@ -9,3 +9,5 @@ sqlparse
 psycopg2-binary
 python-dotenv
 pymysql
+mysqlclient
+mysqlclient==2.1.1
