@@ -1,0 +1,15 @@
+{
+  "name": "dj-react",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-scripts": "^5.0.1",
+    "vite": "^6.0.11"
+  },
+  "scripts": {
+    "dev": "vite",
+    "start": "node server.js"
+  }
+}
